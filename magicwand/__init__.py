@@ -1,5 +1,6 @@
 import cv2 as cv
 import numpy as np
+from pathlib import Path
 
 
 SHIFT_KEY = cv.EVENT_FLAG_SHIFTKEY
@@ -16,7 +17,8 @@ def _find_exterior_contours(img):
 
 
 class SelectionWindow:
-    def __init__(self, img, name="Magic Wand Selector", connectivity=4, tolerance=32):
+    def __init__(self, img_filepath, img, name="Magic Wand Selector", connectivity=4, tolerance=32):
+        self.filepath = Path(img_filepath)
         self.name = name
         h, w = img.shape[:2]
         self.img = img
@@ -86,5 +88,7 @@ class SelectionWindow:
         while True:
             k = cv.waitKey() & 0xFF
             if k in (ord("q"), ord("\x1b")):
+                mask_path = self.filepath.parent / (self.filepath.stem + "_mask.jpg")
+                cv.imwrite(str(mask_path), self.mask)
                 cv.destroyWindow(self.name)
                 break

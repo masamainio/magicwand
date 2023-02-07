@@ -12,7 +12,7 @@ if __name__ == "__main__":
     if img is None or img.size == 0:
         raise Exception(f"Unable to read image {args.image}. Please check the path.")
 
-    window = SelectionWindow(img, "Magic Wand Selector")
+    window = SelectionWindow(args.image, img, "Magic Wand Selector")
 
     print("Click to seed a selection.")
     print(" * [SHIFT] adds to the selection.")

@@ -1,2 +1,5 @@
 .DS_Store
 __pycache__/
+/magicwand/__pycache__
+/magicwand.egg-info
+/.mypy_cache
