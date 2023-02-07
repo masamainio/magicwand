@@ -89,6 +89,7 @@ class SelectionWindow:
             k = cv.waitKey() & 0xFF
             if k in (ord("q"), ord("\x1b")):
                 mask_path = self.filepath.parent / (self.filepath.stem + "_mask.jpg")
+                print(f"Saved mask to file: {mask_path}")
                 cv.imwrite(str(mask_path), self.mask)
                 cv.destroyWindow(self.name)
                 break
